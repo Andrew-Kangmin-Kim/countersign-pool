@@ -1,0 +1,49 @@
+{
+  "decision_rule": "pred_raw",
+  "skipped_closest": 29,
+  "skipped_random": 24,
+  "self_recognition_failures": null,
+  "note": "gate outcome and original-channel trials recovered from the Colab trial cache; held-out trials partly cached, rest scored on CPU",
+  "original": {
+    "n_top": 100,
+    "n_ctrl": 100,
+    "mean_top": 0.015208333333333332,
+    "mean_ctrl": 0.005,
+    "median_top": 0.0,
+    "median_ctrl": 0.0,
+    "ratio": 3.0416666666666665,
+    "ratio_ci": [
+      0.6418402777777777,
+      4.625
+    ],
+    "ratio_boot_undefined_share": 0.351,
+    "mw_p": 2.7026890366919802e-05,
+    "cliffs_delta": 0.1682,
+    "delta_ci": [
+      0.089,
+      0.2474
+    ],
+    "error_rate": 0.9697357203751066
+  },
+  "heldout": {
+    "n_top": 100,
+    "n_ctrl": 100,
+    "mean_top": 0.09041666666666666,
+    "mean_ctrl": 0.0,
+    "median_top": 0.020833333333333332,
+    "median_ctrl": 0.0,
+    "ratio": 90416666666.66666,
+    "ratio_ci": [
+      NaN,
+      NaN
+    ],
+    "ratio_boot_undefined_share": 1.0,
+    "mw_p": 2.998845155482172e-20,
+    "cliffs_delta": 0.61,
+    "delta_ci": [
+      0.52,
+      0.7
+    ],
+    "error_rate": 0.8074381926683717
+  }
+}

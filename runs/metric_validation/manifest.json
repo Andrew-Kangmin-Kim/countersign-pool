@@ -1,0 +1,27 @@
+{
+  "stage": "metric_validation",
+  "config_hash": "ae68a65cdd6a",
+  "seed": 42,
+  "time": "2026-11-16T17:04:24",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "numba": "0.68.1",
+    "kiwipiepy": "0.24.1",
+    "g2pk2": "0.0.3",
+    "python-mecab-ko": "1.3.7",
+    "ortools": "9.15.6755",
+    "statsmodels": "0.15.0",
+    "kneed": "0.9.0",
+    "torch": "2.15.0+cpu",
+    "openai-whisper": "20250625",
+    "transformers": "5.22.2",
+    "edge-tts": "7.3.1",
+    "gTTS": "2.5.4",
+    "funasr": "1.4.26",
+    "modelscope": "1.40.3"
+  },
+  "n_words": 391
+}

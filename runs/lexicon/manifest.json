@@ -1,0 +1,47 @@
+{
+  "stage": "lexicon",
+  "config_hash": "9ec1e17eb516",
+  "seed": 42,
+  "time": "2026-11-15T15:04:19",
+  "python": "3.12.10",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "numba": "0.68.1",
+    "kiwipiepy": "0.24.1",
+    "g2pk2": "0.0.3",
+    "python-mecab-ko": "1.3.7",
+    "ortools": "9.15.6755",
+    "statsmodels": "0.15.0",
+    "kneed": "0.9.0",
+    "torch": "2.15.0+cpu",
+    "openai-whisper": "20250625",
+    "transformers": "5.22.2",
+    "edge-tts": "7.3.1",
+    "gTTS": "2.5.4"
+  },
+  "corpus_entries": 688129,
+  "corpus_tokens": 6330920,
+  "nng_lemmas": 51923,
+  "after_syllables": 37406,
+  "anchors_total": 1670,
+  "anchors_present": 1518,
+  "cutoff_zipf": {
+    "5.0": 2.6756544290797373,
+    "10.0": 3.1016231613520184,
+    "50.0": 4.16466856230982
+  },
+  "cutoff_occurrences": {
+    "5.0": 2.999999999999999,
+    "10.0": 7.999999999999998,
+    "50.0": 92.49864863877737
+  },
+  "N_x": {
+    "5.0": 20262,
+    "10.0": 12696,
+    "50.0": 2743
+  },
+  "headline": 5,
+  "surface_differs_from_spelling": 4002
+}

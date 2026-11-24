@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+*.zip
+
+# regenerable / large
+runs/cache/
+runs*/distances/*.npz
+runs_smoke/
+config_smoke.yaml
+_archive_v1/
+
+# raw corpora: download separately (see README)
+data/
+
+# working copies
+runs_manhattan/logs/

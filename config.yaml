@@ -1,0 +1,89 @@
+# Countersign pool: edit-distance pipeline (calibrated weighted edit distance).
+seed: 42
+out_dir: runs
+
+data:
+  corpus: data/raw/ko_full.txt        # OpenSubtitles KO (hermitdave FrequencyWords 2018), 688,129 entries
+  corpus_sha256: a6495622eb095d1d4cf6e934199a5cb674fbba7d8179525e273e9fcd0d4ac325
+  anchors: data/raw/nikl2003.txt      # NIKL 2003 level C (anchor list for the frequency cutoff)
+  anchors_sha256: 3b49681f05d6a7490c13da2a2847e433effdf65da409fd295792d6ee33685064
+
+lexicon:
+  syllables: [2, 3]                   # counted on the lemma
+  quantiles: [5, 10, 50]              # bottom x% Zipf of anchor nouns present in the corpus
+  headline: 5
+
+phonetics:                            # notebook values
+  gap: 3.0
+  cross: 6.0
+  maxlen: 9
+
+calibration:                          # notebook procedure (bugs fixed, see cpool/calibration.py)
+  n_words: 160
+  scan_words: 800
+  near_pairs: 30
+  snr_db: [0, -5, -10, -15]
+  trials: 8
+  fit_tail: 0.10                      # GLM fit on the nearest 10% of pairs
+  weight_floor: 0.1
+  align_iters: 3                      # bug fix: re-align under fitted weights
+
+calibration_v2:                       # metric-selection experiment: refit with more signal
+  n_words: 320                        # was 160
+  scan_words: 2000                    # was 800 (room for 120 near pairs)
+  near_pairs: 120                     # was 30
+  snr_db: [0, -5]                     # was 0..-15 (-10/-15 sit at the error floor)
+  trials: 8                           # trimmed run
+  fit_tail: 0.10
+  weight_floor: 0.1
+  align_iters: 3
+
+metric_selection:                     # choose the distance on the ORIGINAL channel only
+  metrics: [calibrated_edit, manhattan, euclidean, cosine]
+  near_k: 20000                       # each metric's near range = its 20,000 nearest pairs
+  per_metric: 50                      # pairs sampled at random from each near range (trimmed)
+  random: 50                          # + random pairs from the whole universe (trimmed)
+  oversample: 2                       # sampled in reserve; gate failures are replaced
+  snr_db: [0, -5]
+  trials: 8                           # trimmed
+  edit_tau: 1.5                       # starting edge-list ceiling for calibrated_edit (doubled if short)
+  bootstrap: 2000
+
+channels:
+  original:
+    tts: edge
+    voice: ko-KR-InJoonNeural
+    asr: whisper
+    model: small
+  heldout:
+    tts: gtts
+    asr: sensevoice                   # chosen after scripts/pilot_heldout.py
+    model: iic/SenseVoiceSmall
+  device: auto
+  chunk: 256
+
+metric_validation:
+  n_pairs: 100
+  reserve: 300
+  snr_db: [-5, -10]
+  trials: 12
+
+grid:
+  tau: [0.0, 6.0, 0.25]               # start, stop (inclusive), step; 6 = notebook TAU_MAX = 2*gap
+
+solver:
+  ilp_time_limit_s: 3600              # feasibility test on the giant component, knee cells
+  grid_ilp_time_limit_s: 60           # giant component, every other grid cell (bound for the curve)
+  ilp_max_edges: 3000000              # larger models do not fit in this machine's 5.9 GB RAM
+  component_time_limit_s: 120
+  workers: 8
+  deterministic: true
+  forest_runs: 100
+  forest_k: 3                         # pick at random among the k lowest-degree nodes
+  swap_rounds: 6
+
+pool_validation:
+  spoken: 300                         # spoken words per pool; candidate set = whole pool
+  snr_db: [-5, -10]
+  trials: 4
+  seeds: [0, 1]

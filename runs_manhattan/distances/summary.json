@@ -1,0 +1,7 @@
+{
+  "metric": "manhattan",
+  "n": 20262,
+  "tau_max": 13.0,
+  "edges": 11941827,
+  "seconds": 22.426231861114502
+}
